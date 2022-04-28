@@ -7,10 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,9 +35,9 @@ public class PmsBrandController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult createBrand(@RequestBody PmsBrand pmsBrand) {
+    public CommonResult createPmsBrand(@RequestBody PmsBrand pmsBrand) {
         CommonResult commonResult;
-        int count = pmsBrandService.createBrand(pmsBrand);
+        int count = pmsBrandService.createPmsBrand(pmsBrand);
         if (count == 1) {
             commonResult = CommonResult.success(pmsBrand);
             LOGGER.debug("createBrand success:{}", pmsBrand);
@@ -50,4 +48,18 @@ public class PmsBrandController {
         return commonResult;
     }
 
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult updateBrand(@PathVariable("id") Long id, @RequestBody PmsBrand pmsBrandDto, BindingResult result) {
+        CommonResult commonResult;
+        int count = pmsBrandService.updatePmsBrand(id, pmsBrandDto);
+        if (count == 1) {
+            commonResult = CommonResult.success(pmsBrandDto);
+            LOGGER.debug("updateBrand success:{}", pmsBrandDto);
+        } else {
+            commonResult = CommonResult.failed("操作失败");
+            LOGGER.debug("updateBrand failed:{}", pmsBrandDto);
+        }
+        return commonResult;
+    }
 }

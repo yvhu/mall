@@ -20,7 +20,13 @@ public class PmsBrandServiceImpl implements PmsBrandService {
     }
 
     @Override
-    public int createBrand(PmsBrand brand) {
-        return pmsBrandMapper.insertSelective(brand);
+    public int createPmsBrand(PmsBrand pmsBrand) {
+        return pmsBrandMapper.insertSelective(pmsBrand);
+    }
+
+    @Override
+    public int updatePmsBrand(Long id, PmsBrand brand) {
+        brand.setId(id);
+        return pmsBrandMapper.updateByPrimaryKeySelective(brand);
     }
 }
