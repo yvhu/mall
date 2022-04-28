@@ -29,7 +29,7 @@ public class PmsBrandController {
     private static final Logger LOGGER = LoggerFactory.getLogger(PmsBrandController.class);
 
     /**
-     *
+     * 获取所有品牌列表
      * @return
      */
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
@@ -39,7 +39,7 @@ public class PmsBrandController {
     }
 
     /**
-     *
+     * 添加品牌
      * @param pmsBrand
      * @return
      */
@@ -59,7 +59,7 @@ public class PmsBrandController {
     }
 
     /**
-     *
+     * 更新指定id品牌信息
      * @param id
      * @param pmsBrandDto
      * @param result
@@ -84,7 +84,25 @@ public class PmsBrandController {
     }
 
     /**
-     *
+     * 删除指定id的品牌
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult deleteBrand(@PathVariable("id") Long id) {
+        int count = pmsBrandService.deleteBrand(id);
+        if (count == 1) {
+            LOGGER.debug("deleteBrand success :id={}", id);
+            return CommonResult.success(null);
+        } else {
+            LOGGER.debug("deleteBrand failed :id={}", id);
+            return CommonResult.failed("操作失败");
+        }
+    }
+
+    /**
+     * 分页查询品牌列表
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
@@ -96,7 +114,7 @@ public class PmsBrandController {
 
 
     /**
-     *
+     * 获取指定id的品牌详情
      * @param id
      * @return
      */

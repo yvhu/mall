@@ -33,6 +33,11 @@ public class PmsBrandServiceImpl implements PmsBrandService {
     }
 
     @Override
+    public int deleteBrand(Long id) {
+        return pmsBrandMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
     public List<PmsBrand> listBrand(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         return pmsBrandMapper.selectByExample(new PmsBrandExample());
