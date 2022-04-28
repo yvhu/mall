@@ -1,10 +1,10 @@
 package com.macro.mall.tiny.service;
 
 import com.macro.mall.tiny.mbg.model.PmsBrand;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
-@Service
 //@Autowired
 //private PmsBrandService pmsBrandService;
 //Could not autowire. No beans of 'PmsBrandService' type found.
