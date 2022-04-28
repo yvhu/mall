@@ -11,4 +11,5 @@ import java.util.List;
 //出现上面错误 引入 @Service
 public interface PmsBrandService {
     List<PmsBrand> listAllBrand();
+    int createBrand(PmsBrand pmsBrand);
 }
