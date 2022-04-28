@@ -1,5 +1,6 @@
 package com.macro.mall.tiny.controller;
 
+import com.macro.mall.tiny.common.api.CommonPage;
 import com.macro.mall.tiny.common.api.CommonResult;
 import com.macro.mall.tiny.mbg.model.PmsBrand;
 import com.macro.mall.tiny.service.PmsBrandService;
@@ -27,12 +28,21 @@ public class PmsBrandController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PmsBrandController.class);
 
+    /**
+     *
+     * @return
+     */
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<List<PmsBrand>> getBrandList() {
         return CommonResult.success(pmsBrandService.listAllBrand());
     }
 
+    /**
+     *
+     * @param pmsBrand
+     * @return
+     */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult createPmsBrand(@RequestBody PmsBrand pmsBrand) {
@@ -48,8 +58,18 @@ public class PmsBrandController {
         return commonResult;
     }
 
+    /**
+     *
+     * @param id
+     * @param pmsBrandDto
+     * @param result
+     * @return
+     */
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
+//    @PathVariable 从url获取参数
+//    @RequestParam 都表示从请求获取参数 ( @RequestParam (value = "machineNo" , required = false ) required false 表示非必传
+
     public CommonResult updateBrand(@PathVariable("id") Long id, @RequestBody PmsBrand pmsBrandDto, BindingResult result) {
         CommonResult commonResult;
         int count = pmsBrandService.updatePmsBrand(id, pmsBrandDto);
@@ -61,5 +81,28 @@ public class PmsBrandController {
             LOGGER.debug("updateBrand failed:{}", pmsBrandDto);
         }
         return commonResult;
+    }
+
+    /**
+     *
+     */
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<CommonPage<PmsBrand>> listBrand(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                                                        @RequestParam(value = "pageSize", defaultValue = "3") Integer pageSize) {
+        List<PmsBrand> brandList = pmsBrandService.listBrand(pageNum, pageSize);
+        return CommonResult.success(CommonPage.restPage(brandList));
+    }
+
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<PmsBrand> brand(@PathVariable("id") Long id) {
+        return CommonResult.success(pmsBrandService.getBrand(id));
     }
 }

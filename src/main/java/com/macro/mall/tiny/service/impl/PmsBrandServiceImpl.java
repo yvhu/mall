@@ -1,5 +1,6 @@
 package com.macro.mall.tiny.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.macro.mall.tiny.mbg.mapper.PmsBrandMapper;
 import com.macro.mall.tiny.mbg.model.PmsBrand;
 import com.macro.mall.tiny.mbg.model.PmsBrandExample;
@@ -27,6 +28,18 @@ public class PmsBrandServiceImpl implements PmsBrandService {
     @Override
     public int updatePmsBrand(Long id, PmsBrand brand) {
         brand.setId(id);
+//        Primary 基本的
         return pmsBrandMapper.updateByPrimaryKeySelective(brand);
+    }
+
+    @Override
+    public List<PmsBrand> listBrand(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return pmsBrandMapper.selectByExample(new PmsBrandExample());
+    }
+
+    @Override
+    public PmsBrand getBrand(Long id) {
+        return pmsBrandMapper.selectByPrimaryKey(id);
     }
 }
