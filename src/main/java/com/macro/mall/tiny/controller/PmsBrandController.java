@@ -4,6 +4,8 @@ import com.macro.mall.tiny.common.api.CommonPage;
 import com.macro.mall.tiny.common.api.CommonResult;
 import com.macro.mall.tiny.mbg.model.PmsBrand;
 import com.macro.mall.tiny.service.PmsBrandService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import java.util.List;
 /**
  * 品牌管理
  */
+@Api(tags = "PmsBrandController", description = "商品品牌管理")
 // 标记Controller对象
 @Controller
 // 分发接口
@@ -32,6 +35,7 @@ public class PmsBrandController {
      * 获取所有品牌列表
      * @return
      */
+    @ApiOperation("获取所有品牌列表")
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<List<PmsBrand>> getBrandList() {
@@ -43,6 +47,7 @@ public class PmsBrandController {
      * @param pmsBrand
      * @return
      */
+    @ApiOperation("添加品牌")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult createPmsBrand(@RequestBody PmsBrand pmsBrand) {
@@ -65,6 +70,7 @@ public class PmsBrandController {
      * @param result
      * @return
      */
+    @ApiOperation("更新指定id品牌信息")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
 //    @PathVariable 从url获取参数
@@ -88,6 +94,7 @@ public class PmsBrandController {
      * @param id
      * @return
      */
+    @ApiOperation("删除指定id的品牌")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult deleteBrand(@PathVariable("id") Long id) {
@@ -104,6 +111,7 @@ public class PmsBrandController {
     /**
      * 分页查询品牌列表
      */
+    @ApiOperation("分页查询品牌列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<CommonPage<PmsBrand>> listBrand(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
@@ -118,6 +126,7 @@ public class PmsBrandController {
      * @param id
      * @return
      */
+    @ApiOperation("获取指定id的品牌详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<PmsBrand> brand(@PathVariable("id") Long id) {
