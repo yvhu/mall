@@ -3,8 +3,10 @@ package com.macro.mall.tiny.mbg.mapper;
 import com.macro.mall.tiny.mbg.model.PmsProductVertifyRecord;
 import com.macro.mall.tiny.mbg.model.PmsProductVertifyRecordExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface PmsProductVertifyRecordMapper {
     long countByExample(PmsProductVertifyRecordExample example);
 

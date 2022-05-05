@@ -3,8 +3,10 @@ package com.macro.mall.tiny.mbg.mapper;
 import com.macro.mall.tiny.mbg.model.SmsFlashPromotionSession;
 import com.macro.mall.tiny.mbg.model.SmsFlashPromotionSessionExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface SmsFlashPromotionSessionMapper {
     long countByExample(SmsFlashPromotionSessionExample example);
 

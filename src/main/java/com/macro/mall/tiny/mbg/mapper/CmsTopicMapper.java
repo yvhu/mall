@@ -3,8 +3,10 @@ package com.macro.mall.tiny.mbg.mapper;
 import com.macro.mall.tiny.mbg.model.CmsTopic;
 import com.macro.mall.tiny.mbg.model.CmsTopicExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface CmsTopicMapper {
     long countByExample(CmsTopicExample example);
 

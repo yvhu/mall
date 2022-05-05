@@ -3,8 +3,10 @@ package com.macro.mall.tiny.mbg.mapper;
 import com.macro.mall.tiny.mbg.model.SmsHomeBrand;
 import com.macro.mall.tiny.mbg.model.SmsHomeBrandExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface SmsHomeBrandMapper {
     long countByExample(SmsHomeBrandExample example);
 

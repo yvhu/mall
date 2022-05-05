@@ -3,8 +3,10 @@ package com.macro.mall.tiny.mbg.mapper;
 import com.macro.mall.tiny.mbg.model.CmsHelpCategory;
 import com.macro.mall.tiny.mbg.model.CmsHelpCategoryExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface CmsHelpCategoryMapper {
     long countByExample(CmsHelpCategoryExample example);
 

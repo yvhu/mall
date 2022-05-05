@@ -3,8 +3,10 @@ package com.macro.mall.tiny.mbg.mapper;
 import com.macro.mall.tiny.mbg.model.UmsPermission;
 import com.macro.mall.tiny.mbg.model.UmsPermissionExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface UmsPermissionMapper {
     long countByExample(UmsPermissionExample example);
 
